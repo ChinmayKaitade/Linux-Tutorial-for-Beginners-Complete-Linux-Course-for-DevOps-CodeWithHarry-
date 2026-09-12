@@ -1105,7 +1105,6 @@ zip -r python.zip python-projects/
 unzip python.zip
 ```
 
-
 ---
 
 ## ⏰ **Scheduled Tasks & Automation with Cron Jobs**
@@ -1121,17 +1120,20 @@ From running scheduled database backups to executing maintenance scripts, master
 Each user maintains their own dedicated cron schedule file managed through the `crontab` utility.
 
 #### 👁️ `crontab -l` (List Scheduled Jobs)
-* **What it does:** Displays all active cron jobs scheduled under the current user account.
-* **DevOps Use Case:** Auditing existing scheduled jobs before deploying new automation scripts.
+
+- **What it does:** Displays all active cron jobs scheduled under the current user account.
+- **DevOps Use Case:** Auditing existing scheduled jobs before deploying new automation scripts.
+
 ```bash
 crontab -l
 ```
 
 #### ✏️ `crontab -e` (Edit Scheduled Jobs)
 
-* **What it does:** Opens the user's crontab schedule inside an interactive terminal editor.
-* **Selecting Your Preferred Editor:**
-On the first execution, Linux prompts you to select a default text editor:
+- **What it does:** Opens the user's crontab schedule inside an interactive terminal editor.
+- **Selecting Your Preferred Editor:**
+  On the first execution, Linux prompts you to select a default text editor:
+
 ```text
 Select an editor.  To change later, run 'select-editor'.
   1. /bin/nano        <-- easiest
@@ -1140,7 +1142,6 @@ Select an editor.  To change later, run 'select-editor'.
 
 Choose 1-3 [1]: 2
 ```
-
 
 Type `2` and hit `Enter` to set **Vim** as your default editor.
 
@@ -1203,22 +1204,22 @@ Every scheduled cron entry follows a five-field time specification followed by t
 
 #### 🎯 Special Operator Cheatsheet
 
-* `*` (**Wildcard / Every**): Runs on every matching value (e.g., `*` in the minute field runs every minute).
-* `,` (**Value List**): Specifies distinct execution intervals (e.g., `15,45` runs at minute 15 and minute 45).
-* `-` (**Range**): Defines an inclusive range (e.g., `1-5` in day-of-week runs Monday through Friday).
-* `/` (**Step Value**): Specifies incremental intervals (e.g., `*/10` in minute runs every 10 minutes).
+- `*` (**Wildcard / Every**): Runs on every matching value (e.g., `*` in the minute field runs every minute).
+- `,` (**Value List**): Specifies distinct execution intervals (e.g., `15,45` runs at minute 15 and minute 45).
+- `-` (**Range**): Defines an inclusive range (e.g., `1-5` in day-of-week runs Monday through Friday).
+- `/` (**Step Value**): Specifies incremental intervals (e.g., `*/10` in minute runs every 10 minutes).
 
 > 💡 **DevOps Tip:** Use **[crontab.guru](https://crontab.guru)** to test, validate, and human-read any complex cron expression before pushing it to production!
 
 #### 🚀 Common Real-World Cron Examples
 
-| Expression | Schedule Description |
-| --- | --- |
-| `* * * * *` | Every single minute |
-| `*/5 * * * *` | Every 5 minutes |
-| `0 * * * *` | Every hour on the hour |
-| `0 2 * * *` | Daily at 2:00 AM (Ideal for nightly backups) |
-| `0 0 * * 0` | Weekly on Sunday at midnight |
+| Expression    | Schedule Description                         |
+| ------------- | -------------------------------------------- |
+| `* * * * *`   | Every single minute                          |
+| `*/5 * * * *` | Every 5 minutes                              |
+| `0 * * * *`   | Every hour on the hour                       |
+| `0 2 * * *`   | Daily at 2:00 AM (Ideal for nightly backups) |
+| `0 0 * * 0`   | Weekly on Sunday at midnight                 |
 
 ---
 
@@ -1258,14 +1259,13 @@ Watch the log file populate automatically each minute:
 cat /home/chinmay/time.txt
 ```
 
-
 ---
 
 ## 🗂️ **Understanding the Linux Filesystem (FHS)**
 
 Unlike Windows, which organizes storage across distinct drive letters (`C:\`, `D:\`), Linux unifies everything under a single hierarchical tree structure. 🌳  
 This layout adheres strictly to the **Filesystem Hierarchy Standard (FHS)**, ensuring predictable file locations across distributions. 📐  
-In Linux, the core philosophy holds true: *"Everything is a file"* — including hardware devices, processes, and network sockets. ⚙️
+In Linux, the core philosophy holds true: _"Everything is a file"_ — including hardware devices, processes, and network sockets. ⚙️
 
 ---
 
@@ -1299,9 +1299,9 @@ Every path in Linux originates from the root directory (`/`). Subdirectories bra
 
 ### 📂 **Directory Breakdown & DevOps Relevance**
 
-| Directory | Full Name & Purpose | DevOps Real-World Relevance |
-| --- | --- | --- |
-| **`/etc`** | **Editable Text Configurations**<br>
+| Directory  | Full Name & Purpose                  | DevOps Real-World Relevance |
+| ---------- | ------------------------------------ | --------------------------- |
+| **`/etc`** | **Editable Text Configurations**<br> |
 
 <br>Contains static system-wide configuration files and startup scripts. | The most heavily edited folder in DevOps: contains Nginx configurations (`/etc/nginx`), SSH daemon rules (`/etc/ssh/sshd_config`), and environment definitions (`/etc/environment`). |
 | **`/var`** | **Variable Data**<br>
@@ -1336,13 +1336,14 @@ Every path in Linux originates from the root directory (`/`). Subdirectories bra
 
 ### 🧭 **Absolute vs. Relative Paths**
 
-* **📍 Absolute Path:** Always begins from the root directory (`/`). It points directly to the exact target location regardless of where your terminal currently stands.
+- **📍 Absolute Path:** Always begins from the root directory (`/`). It points directly to the exact target location regardless of where your terminal currently stands.
+
 ```bash
 cd /var/log/nginx
 ```
 
+- **🚶 Relative Path:** Resolves relative to your **current working directory** (`pwd`). Does not begin with a leading `/`.
 
-* **🚶 Relative Path:** Resolves relative to your **current working directory** (`pwd`). Does not begin with a leading `/`.
 ```bash
 # Assuming current path is /var
 cd log/nginx
@@ -1350,8 +1351,6 @@ cd log/nginx
 # Reference the parent directory
 cd ../etc
 ```
-
-
 
 ---
 
@@ -1390,7 +1389,7 @@ tree -L 2 /var/log
 
 ## 🌐 **Understanding Nginx (Web Server & Reverse Proxy)**
 
-Nginx (pronounced *engine-x*) is an open-source, high-performance HTTP server, reverse proxy, and load balancer. 🚀  
+Nginx (pronounced _engine-x_) is an open-source, high-performance HTTP server, reverse proxy, and load balancer. 🚀  
 Its asynchronous, event-driven architecture handles thousands of concurrent client connections with minimal RAM and CPU overhead. ⚡  
 In modern DevOps workflows, Nginx acts as the front-facing gateway routing external traffic into internal microservices and web apps. 🛡️
 
@@ -1401,7 +1400,9 @@ In modern DevOps workflows, Nginx acts as the front-facing gateway routing exter
 Install Nginx on Ubuntu using the standard `apt` package manager:
 
 #### 🔄 1. Refresh Package Indexes
+
 Synchronize the local package index with upstream repositories to pull the latest stable build:
+
 ```bash
 sudo apt update
 ```
@@ -1439,29 +1440,29 @@ cd /var/www
 ls -la
 ```
 
-* Inside `/var/www/html`, you will find the default `index.nginx-debian.html` landing page.
-* You can test your setup by opening your server's public IP address (`http://<YOUR_SERVER_IP>`) in any browser to see the default *"Welcome to nginx!"* page. 🌐
+- Inside `/var/www/html`, you will find the default `index.nginx-debian.html` landing page.
+- You can test your setup by opening your server's public IP address (`http://<YOUR_SERVER_IP>`) in any browser to see the default _"Welcome to nginx!"_ page. 🌐
 
 ---
 
 ### 🗺️ **Core Architecture & Configuration Paths**
 
-| Path | Purpose & DevOps Functionality |
-| --- | --- |
-| **`/etc/nginx/nginx.conf`** | The master global configuration file defining worker processes, events, timeouts, and logging formats. |
-| **`/etc/nginx/sites-available/`** | Contains individual server block (virtual host) configurations for each website or reverse-proxy application. |
-| **`/etc/nginx/sites-enabled/`** | Contains active symbolic links pointing back to files in `sites-available/`. Only files linked here are served. |
-| **`/var/www/`** | Standard location where static application assets (HTML, CSS, React/Vue build outputs) are hosted. |
-| **`/var/log/nginx/`** | Houses runtime logs: `access.log` (incoming HTTP requests) and `error.log` (crashes and routing failures). |
+| Path                              | Purpose & DevOps Functionality                                                                                  |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| **`/etc/nginx/nginx.conf`**       | The master global configuration file defining worker processes, events, timeouts, and logging formats.          |
+| **`/etc/nginx/sites-available/`** | Contains individual server block (virtual host) configurations for each website or reverse-proxy application.   |
+| **`/etc/nginx/sites-enabled/`**   | Contains active symbolic links pointing back to files in `sites-available/`. Only files linked here are served. |
+| **`/var/www/`**                   | Standard location where static application assets (HTML, CSS, React/Vue build outputs) are hosted.              |
+| **`/var/log/nginx/`**             | Houses runtime logs: `access.log` (incoming HTTP requests) and `error.log` (crashes and routing failures).      |
 
 ---
 
 ### 🔀 **Common DevOps Use Cases for Nginx**
 
-* **Static Site Hosting:** Serves HTML, CSS, JavaScript, and images directly off the disk with high caching efficiency. 📄
-* **Reverse Proxy:** Accepts external HTTP/HTTPS requests on port 80/443 and passes them to internal backend services (Node.js, Python Flask/FastAPI, Go) running on private ports like `3000` or `8000`. 🔁
-* **Load Balancing:** Distributes incoming web traffic across multiple backend application instances using algorithms like Round Robin or Least Connections. ⚖️
-* **SSL/TLS Termination:** Offloads HTTPS decryption/encryption duties at the gateway using Let's Encrypt certificates before forwarding plain traffic internally. 🔒
+- **Static Site Hosting:** Serves HTML, CSS, JavaScript, and images directly off the disk with high caching efficiency. 📄
+- **Reverse Proxy:** Accepts external HTTP/HTTPS requests on port 80/443 and passes them to internal backend services (Node.js, Python Flask/FastAPI, Go) running on private ports like `3000` or `8000`. 🔁
+- **Load Balancing:** Distributes incoming web traffic across multiple backend application instances using algorithms like Round Robin or Least Connections. ⚖️
+- **SSL/TLS Termination:** Offloads HTTPS decryption/encryption duties at the gateway using Let's Encrypt certificates before forwarding plain traffic internally. 🔒
 
 ---
 
@@ -1477,4 +1478,81 @@ sudo nginx -t
 sudo systemctl reload nginx
 ```
 
+---
 
+## 📁 **Using FileZilla to Transfer Files (SFTP)**
+
+FileZilla is a cross-platform graphical client used for secure, bidirectional file transfers between local machines and remote servers. 💻  
+Instead of insecure plain FTP, modern DevOps engineers use **SFTP (SSH File Transfer Protocol)** running encrypted over standard SSH port 22. 🔒  
+It simplifies managing static website assets, downloading application logs, and staging code files without writing complex shell commands. 🚀
+
+---
+
+### 📥 **Prerequisites & Download**
+
+- **🖥️ Download FileZilla Client:** Install the free **FileZilla Client** (not Server) for Windows, macOS, or Linux from the official site.
+- **🌐 Server Credentials:** You will need your server's Public IP address, SSH username (`root` or your sudo user), and password or private SSH key.
+- **🛡️ Firewall Check:** Ensure TCP port **22** (SSH/SFTP) is open on your host provider (Hostinger hPanel, AWS Security Groups, or UFW).
+
+---
+
+### ⚡ **Method 1: QuickConnect (Password Authentication)**
+
+Use the top QuickConnect bar for fast, session-based connections:
+
+1. **Host:** `sftp://<YOUR_SERVER_PUBLIC_IP>` _(Prepending `sftp://` explicitly forces secure SSH transfer mode)._
+2. **Username:** `root` (or your created user, e.g., `chinmay`).
+3. **Password:** Your server user password.
+4. **Port:** `22` (default SSH port).
+5. Click **Quickconnect**.
+6. **Host Key Verification:** On the first connection, check **"Always trust this host"** and click **OK** to accept the remote server's fingerprint. 🔑
+
+---
+
+### 🔑 **Method 2: Site Manager with SSH Keys (Recommended & Secure)**
+
+For recurring access using an SSH private key (`id_ed25519` or `id_rsa`), use FileZilla's persistent Site Manager:
+
+1. Open FileZilla and navigate to **File > Site Manager** (or press `Ctrl + S` / `Cmd + S`).
+2. Click **New Site** and name it (e.g., `Hostinger-DevOps-VPS`).
+3. Set the connection properties:
+   - **Protocol:** Select **SFTP - SSH File Transfer Protocol**.
+   - **Host:** Enter your server's public IP address.
+   - **Port:** `22`.
+   - **Logon Type:** Select **Key file**.
+   - **User:** `root` (or your user account).
+   - **Key file:** Browse and select your private key file (e.g., `C:\Users\<user>\.ssh\id_rsa` or `~/.ssh/id_ed25519`).
+4. Click **Connect**.
+
+---
+
+### 🖥️ **Navigating the FileZilla Dual-Pane Interface**
+
+Once connected, FileZilla presents two primary working directory trees side-by-side:
+
+| Left Pane (Local Site)                                                | Right Pane (Remote Site)                                                          |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Displays the filesystem of your local computer (Windows/macOS/Linux). | Displays the filesystem of your remote Linux server (starting at `/` or `/root`). |
+
+- **⬆️ Uploading Files:** Navigate to the project folder on your local pane, find the files, right-click, and select **Upload** (or simply drag and drop them into the remote right pane, e.g., into `/var/www/html/`).
+- **⬇️ Downloading Logs/Backups:** Navigate on the remote right pane to `/var/log/nginx/` or `/home/chinmay/`, right-click a file (like `access.log`), and select **Download**.
+- **📝 Direct Remote File Editing:** Right-click any text file on the remote server and select **View/Edit** to modify code locally in your default editor and automatically sync changes back on save.
+
+---
+
+### ⚠️ **Common Troubleshooting & Permission Fixes**
+
+- **❌ Error: "Permission Denied" while uploading to `/var/www/`:**  
+  Non-root users might lack write permissions in web directories. Fix directory ownership via terminal:
+  ```bash
+  sudo chown -R $USER:www-data /var/www/html
+  sudo chmod -R 775 /var/www/html
+  ```
+
+
+* **❌ Error: "Connection timed out":**
+Verify your server's firewall allows port 22:
+```bash
+sudo ufw allow 22/tcp
+sudo ufw reload
+```
