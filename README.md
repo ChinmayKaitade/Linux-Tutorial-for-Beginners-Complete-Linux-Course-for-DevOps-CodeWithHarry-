@@ -22,7 +22,7 @@ A comprehensive, zero-to-production guide designed to take you from foundational
 - [⚡ Quick Start: Clone & Setup](#-quick-start-clone--setup)
 - [📚 Additional Resources & Cheatsheets](#-additional-resources--cheatsheets)
 - [⭐ Support & Community](#-support--community)
-- [📄 License](#-license)
+- [📄 License](./LICENSE)
 
 ---
 
