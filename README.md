@@ -48,14 +48,12 @@ Launch your local terminal, PowerShell, or Git Bash and connect via SSH:
 
 ```bash
 ssh -i ~/.ssh/id_ed25519 root@<YOUR_HOSTINGER_SERVER_IP>
-
 ```
 
 - **🔒 Password-Based Login:**
 
 ```bash
 ssh root@<YOUR_HOSTINGER_SERVER_IP>
-
 ```
 
 - **🖥️ Emergency Browser Console:**
@@ -79,7 +77,6 @@ df -h
 
 # 🧠 Monitor available and used RAM (in megabytes)
 free -m
-
 ```
 
 ## 📦 **Installing Linux Through VirtualBox on Windows**
@@ -146,7 +143,6 @@ wsl --install
 
 ```powershell
 wsl -l -v
-
 ```
 
 ### 🛠️ **Essential Post-Install Workflow**
@@ -162,7 +158,6 @@ cd /mnt/c/Users/
 
 # 💻 Launch VS Code directly inside your WSL Linux environment
 code .
-
 ```
 
 ---
@@ -202,7 +197,6 @@ cd ..
 
 # Go up two directory levels at once
 cd ../../
-
 ```
 
 #### 📋 `ls` (List Directory Contents)
@@ -219,7 +213,6 @@ ls -l
 
 # Show all files including hidden dotfiles (.env, .git)
 ls -la
-
 ```
 
 ---
@@ -237,7 +230,6 @@ mkdir myfirstwebsite
 
 # Create nested/parent directories all at once using -p
 mkdir -p my/folder/one
-
 ```
 
 #### 📄 `touch` (Create Empty File)
@@ -247,7 +239,6 @@ mkdir -p my/folder/one
 
 ```bash
 touch one.txt
-
 ```
 
 #### 📋 `cp` (Copy Files & Directories)
@@ -261,7 +252,6 @@ cp one.txt /root/chinmay.txt
 
 # Copy an entire folder recursively using -r
 cp -r myfirstwebsite /var/www/backup_website
-
 ```
 
 ---
@@ -275,7 +265,6 @@ cp -r myfirstwebsite /var/www/backup_website
 
 ```bash
 vim one.txt
-
 ```
 
 - **⚡ Core Vim Workflow:**
@@ -299,7 +288,6 @@ cat chinmay.txt
 
 # View content with line numbers for easier debugging (-n)
 cat -n chinmay.txt
-
 ```
 
 #### 📜 `less` (Paginated File Viewer)
@@ -309,7 +297,6 @@ cat -n chinmay.txt
 
 ```bash
 less chinmay.txt
-
 ```
 
 > 💡 **Navigation in `less`:** Use `↑` / `↓` arrows or `Space` to scroll, `/search-term` to find text, and press `q` to exit.
@@ -360,7 +347,6 @@ Enter the new value, or press ENTER for the default
     Home Phone []:
     Other []:
 Is the information correct? [Y/n] Y
-
 ```
 
 ---
@@ -386,7 +372,6 @@ pwd
 
 # Return back to your previous shell/root session
 exit
-
 ```
 
 ---
@@ -401,7 +386,6 @@ exit
 ```bash
 # Run this from an account with root privileges
 sudo usermod -aG sudo chinmay
-
 ```
 
 - **Flags Explained:**
@@ -416,7 +400,6 @@ su - chinmay
 
 # Test administrative privileges
 sudo apt update
-
 ```
 
 ## 📦 **Package Management with APT (Advanced Package Tool)**
@@ -443,7 +426,6 @@ sudo apt update
 
 ```bash
 sudo apt upgrade -y
-
 ```
 
 ---
@@ -461,7 +443,6 @@ sudo apt install apache2 -y
 
 # Install Nginx High-Performance Web Server & Reverse Proxy
 sudo apt install nginx -y
-
 ```
 
 #### 🛠️ `sudo apt install curl git python3` (Multi-Package Installation)
@@ -471,7 +452,6 @@ sudo apt install nginx -y
 
 ```bash
 sudo apt install curl git python3 -y
-
 ```
 
 ---
@@ -485,7 +465,6 @@ sudo apt install curl git python3 -y
 
 ```bash
 sudo apt remove apache2 -y
-
 ```
 
 #### 🧹 `sudo apt purge apache2`
@@ -495,7 +474,6 @@ sudo apt remove apache2 -y
 
 ```bash
 sudo apt purge apache2 -y
-
 ```
 
 ---
@@ -513,7 +491,6 @@ apt list --installed
 
 # Check if a specific package is installed
 apt list --installed | grep nginx
-
 ```
 
 ## 🔐 **Groups & User Access Control**
@@ -531,7 +508,6 @@ This role-based access model protects sensitive system directories and fosters s
 
 ```bash
 sudo groupadd developers
-
 ```
 
 #### 👤 `useradd -m <username>` (Create User with Home Directory)
@@ -543,7 +519,6 @@ sudo groupadd developers
 # Create user accounts for team members with dedicated home folders
 sudo useradd -m aman
 sudo useradd -m dipak
-
 ```
 
 #### 🔑 `passwd <username>` (Assign or Update User Password)
@@ -557,7 +532,6 @@ sudo passwd aman
 
 # Set password for Dipak
 sudo passwd dipak
-
 ```
 
 ---
@@ -577,7 +551,6 @@ sudo usermod -aG developers dipak
 # Verify group membership for a user
 groups aman
 # Output: aman : aman developers
-
 ```
 
 ---
@@ -591,7 +564,6 @@ groups aman
 
 ```bash
 ls -l
-
 ```
 
 - **Deciphering `ls -l` Output:**
@@ -608,4 +580,106 @@ ls -l
 │     └─ Permission Triplets (User: rwx, Group: r-x, Others: r--)
 └─ File Type (- for file, d for directory, l for symlink)
 
+```
+
+---
+
+## 🛡️ **File Ownership & Permission Management**
+
+Linux enforces strict access control by pairing every file and directory with a designated owner and group. 🔒  
+System administrators can reassign ownership and fine-tune read, write, and execute permissions at granular levels. ⚙️  
+Understanding ownership commands and permission flags prevents unauthorized access and resolves runtime permission conflicts. 🚀
+
+### 🏢 **Setting Up the Shared Workspace**
+
+Before adjusting permissions, navigate to the target parent directory and create the folder designated for the team:
+
+```bash
+# Navigate to chinmay's directory
+cd chinmay
+
+# Create a shared team directory named 'devs'
+mkdir devs
+```
+
+---
+
+### 👤 **Managing File & Directory Ownership**
+
+#### 🔑 `sudo chown <owner> <target>` (Change Owner)
+
+- **What it does:** Transfers file or folder ownership to a different system user account.
+- **DevOps Use Case:** Handing over newly cloned application files or Docker build outputs to the appropriate service user.
+
+```bash
+sudo chown aman devs
+```
+
+#### 👥 `sudo chgrp <group> <target>` (Change Group)
+
+- **What it does:** Reassigns the associated primary group ownership of a file or folder.
+- **DevOps Use Case:** Assigning a project directory to the `developers` group so team members can share files without permission errors.
+
+```bash
+sudo chgrp developers devs
+```
+
+> 💡 **DevOps Pro Tip:** You can set both owner and group simultaneously with a single `chown` command:
+>
+> ```bash
+> sudo chown aman:developers devs
+> ```
+
+---
+
+### 🎛️ **Modifying Permissions with `chmod` (Symbolic Mode)**
+
+The `chmod` (change mode) command modifies who can read (`r`), write (`w`), or execute (`x`) files and folders.
+
+Symbolic notation uses categories to specify which permissions to grant (`+`) or revoke (`-`):
+
+- **`u` (User / Owner):** The account that owns the file.
+- **`g` (Group):** Users belonging to the owning group.
+- **`o` (Others):** Everyone else with access to the system.
+- **`a` (All):** Applies to User, Group, and Others simultaneously (`u + g + o`).
+
+#### ✍️ Modifying Access Step-by-Step
+
+- **👥 Grant Write Access to the Group (`g+w`):**
+  Allows any user inside the `developers` group to create, modify, and delete files inside `devs`.
+
+```bash
+chmod g+w devs
+```
+
+- **👤 Grant Write Access to the Owner (`u+w`):**
+  Ensures the file owner (`aman`) maintains write privileges.
+
+```bash
+chmod u+w devs
+```
+
+- **🌍 Grant Write Access to Others (`o+w`):**
+  Allows all other system users on the server to write to the directory _(use with caution in production!)_.
+
+```bash
+chmod o+w devs
+```
+
+- **🌐 Grant Write Access to Everyone (`a+w`):**
+  Applies write permission across all three levels (owner, group, and others) simultaneously.
+
+```bash
+chmod a+w devs
+```
+
+---
+
+### 🔍 **Verifying Updated Permissions**
+
+Inspect the directory to confirm that the owner, group, and permission flags match the intended access policies:
+
+```bash
+ls -ld devs
+# Output preview: drwxrwxrwx 2 aman developers 4096 Sep 12 10:30 devs
 ```
